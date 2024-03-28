@@ -1,0 +1,6 @@
+//ONDE PONTO E VÍRGULA É OBRIGATÓRIO EM JS (PT.1)
+
+let i = null;
+
+for(i=0;i<10;i++); // ESSE PONTO E VÍRGULA SERVE PARA MOSTRAR QUE O FOR N TEM BLOCO DE COMANDO
+    console.log(i);

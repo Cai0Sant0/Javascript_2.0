@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="aula63_64.css">
+    <title>Aula63</title>
+</head>
+<body>
+    <div id="criarCarro" class="criarCarro">
+        <div class="campoForm">
+            <label for="f_nome">Nome</label>
+            <input type="text" name="nome" id="f_nome" value="">
+        </div>
+        <div class="campoForm">
+            <label for="f_cor">Cor</label>
+            <input type="text" name="cor" id="f_cor" value="">
+        </div>
+        <div class="campoForm">
+            <label for="f_portas">Portas</label>
+            <input type="number" name="porta" id="f_portas" placeholder="0" max= "4" min="1">
+        </div>
+        <div class="campoForm">
+            <label for="f_blindagem">Blindagem</label>
+            <input type="number" name="blindagem" id="f_blindagem" disabled placeholder="0" min="0">
+        </div>
+        <div class="campoForm">
+            <label for="f_municao">Munição</label>
+            <input type="number" name="municao" id="f_municao" disabled placeholder="0" min="0">
+        </div>
+        <div class="campoForm">
+            <label>Tipo</label>
+            <div class="radio">
+                <input type="radio" name="tipo" id="f_tipoMilitar" value="m">Militar
+            </div>
+            <div class="radio">
+                <input type="radio" name="tipo" id="f_tipoNormal" checked>Normal
+            </div>
+        </div>
+        <div class="campoForm">
+            <button id="btn_addCarro">Adicionar</button>
+        </div>
+    </div>
+    <div class="carros">
+
+    </div>
+    <script src="aula63_64.js"></script>
+</body>
+</html>

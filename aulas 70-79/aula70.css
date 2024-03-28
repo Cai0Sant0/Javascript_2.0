@@ -1,0 +1,118 @@
+@charset "UTF-8";
+
+*{
+    padding: 0px;
+    margin: 0px;
+    border: none;
+    box-sizing: border-box;
+    font-size: large;
+}
+
+.calc{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    top: -19.1em;
+    transition: all 0.8s;
+
+    /*top: -19.5em;*/
+}
+
+.calc_exibir{
+    top: 10px !important;
+    transition: all 0.8s;
+}
+
+
+
+#calc_principal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(1, 1, 1, 0.634);
+    border: 3px solid #eee;
+    width: 224px;
+    height: 345px;
+    border-radius:13px;
+    margin: auto;
+}
+
+
+
+.div_nome{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 188px;
+    color: rgba(255, 255, 255, 0.899);
+}
+
+.div_teclas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 188px;
+    flex-wrap: wrap;
+}
+
+.tecla{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #aaa;
+    border: 3px solid #888;
+    font-weight: bold;
+    width: 43px;
+    height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 2px;
+}
+
+.teclaOp{
+    background-color: #f44 !important;
+    border-color: #800 !important;
+}
+
+.teclaOp:hover{
+    color: white;
+
+    transition: 0.2s;
+}
+
+/* DISPLAY */
+
+.div_display{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 188px;
+}
+.display{
+    width: 188px;
+    background-color: rgba(52, 225, 13, 0.808);
+    text-align: right;
+    font-family: monospace;
+    font-size: larger;
+    margin: 3px 0px;
+}
+
+#calc_aba{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 64px;
+    height: 28px;
+    background-color: rgb(145 145 145 / 30%);
+    border-radius: 0px 0px 5px 5px;
+    cursor: pointer;
+}
+
+#calc_aba:hover{
+    background-color: #f44;
+
+    transition: 1s;
+}

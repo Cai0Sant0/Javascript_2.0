@@ -1,4 +1,4 @@
-// APRENDENDO SOBRE FETCH PARA CONSUMO DE API's
+// APRENDENDO SOBRE FETCH PARA CONSUMO DE API's (PT.1)
 
 const endpoint = "https://75711e3d-404a-453c-abdf-3223a84e41a3-00-qqqhyklasa7r.picard.replit.dev/";
 

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 128</title>
+    <style>
+        div{
+            width: 500px;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <canvas id="grafico1"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  //APRENDENDO SOBRE GRÁFICOS COM O CHART JS (PT.02) USANDO API PARA ATUALIZAR CONTEÚDO
+
+  const ctx = document.getElementById('grafico1');
+
+  let titulos = ["Disponibilidade", "Qualidade", "Performance"];
+  let valores = [0,0,0];
+
+  
+
+ 
+
+  let grafico1 = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: titulos, //Label é os títulos do gráfico
+      datasets: [{
+        label: '# of Votes',
+        data: valores,// Data é o valor de cada item no gráfico
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  function buscarDados(){
+
+    let endpoint = "https://b5211a46-4f45-4273-9eb6-d7102fde015c-00-3dxzv3x3n7ver.riker.replit.dev/";
+
+    fetch(endpoint)
+    .then(res => res.json())
+    .then(res =>{
+   
+    valores[0] = res.disponibilidade;
+    valores[1] = res.qualidade;
+    valores[2] = res.performance;
+
+    grafico1.update(); // TEM QUE FAZER ISSO PARA O GRÁFICO FUNCIONAR
+  })
+    .catch(erro=>{
+       console.error("ERRO"+ erro);
+    })
+  }
+
+  //let intervaloGrafic = setInterval(buscarDados,3000)
+  setInterval(buscarDados,3000); // Setando esse intervalo a tabela se atualiza sozinha
+
+   
+ 
+</script>
+</body>
+</html>

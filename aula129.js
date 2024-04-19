@@ -1,8 +1,15 @@
 // FAZENDO UM CRONÔMETRO COM USO DO TIMESTAMP
 
 const timer = document.querySelector("#timer");
+const btn_play = document.querySelector("#play");
+const btn_stop= document.querySelector("#stop");
+const btn_reset = document.querySelector("#reset");
+const btn_tempos = document.querySelector("#tempo")
+const tempos = document.querySelector("#tempos");
 
-const tmpInicial = Date.now();
+let tmpInicial = Date.now();
+
+let intervalo = null;
 
 const contador =()=>{
     const tmpAtual = Date.now();
@@ -23,4 +30,23 @@ const converter =(seg)=>{
     return formatado;
 
 }
-setInterval(contador,1000);
+
+btn_play.addEventListener("click",()=>{
+     tmpInicial = Date.now();
+     intervalo = setInterval(contador,1000);
+});
+
+
+btn_reset.addEventListener("click",()=>{
+    timer.innerHTML = `00:00:00`;
+    tmpInicial = Date.now();
+    intervalo = setInterval(contador,1000);
+});
+
+btn_stop.addEventListener("click",()=>{
+    clearInterval(intervalo);
+});
+
+btn_tempos.addEventListener("click",()=>{
+
+});

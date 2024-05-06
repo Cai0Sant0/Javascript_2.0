@@ -5,16 +5,14 @@ const btn_play = document.querySelector("#play");
 const btn_stop= document.querySelector("#stop");
 const btn_reset = document.querySelector("#reset");
 const btn_tempos = document.querySelector("#tempo")
-const tempos = document.querySelector("#tempos");
-
-let tmpInicial = Date.now();
+const tempos = document.querySelector("#temposRegistrados");
 
 let intervalo = null;
 
 const contador =()=>{
     const tmpAtual = Date.now();
     let cont = tmpAtual-tmpInicial;
-    let seg = cont/1000; // AQUI DIVIDO POR 1000 PARA PEGAR OS SEGUNDOS NA DIFERENTE ENTRE UM TIMESTAMP E OUTRO
+    let seg = cont/1000; // AQUI DIVIDO POR 1000 PARA PEGAR OS SEGUNDOS NA DIFERENÇA ENTRE UM TIMESTAMP E OUTRO
     timer.innerHTML = converter(seg); // AQUI É UMA FUNÇÃO DENTRO DA OUTRA (CONVERTER --DENTRO--> CONTADOR)
 }
 
@@ -41,6 +39,7 @@ btn_reset.addEventListener("click",()=>{
     timer.innerHTML = `00:00:00`;
     tmpInicial = Date.now();
     intervalo = setInterval(contador,1000);
+    tempos.innerHTML = "";
 });
 
 btn_stop.addEventListener("click",()=>{
@@ -48,5 +47,9 @@ btn_stop.addEventListener("click",()=>{
 });
 
 btn_tempos.addEventListener("click",()=>{
+    tempos.innerHTML+= `${timer.innerHTML} <br>` //--> UM DOS JEITOS DE FAZER OS TEMPOS USANDO O INNERHTML
 
+    // let paragrafo = document.createElement("p");
+    // paragrafo.innerHTML += timer.innerHTML;      ----> ESSE SERIA O MODO CRIANDO UMA TAG
+    // tempos.appendChild(paragrafo);
 });

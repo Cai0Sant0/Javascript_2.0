@@ -9,13 +9,11 @@ class Cxmsg{
     divmsg = null;
 
     constructor(config){
-       this.titulo = config.titulo;
-        this.texto = config.texto;
         this.cor = config.cor;
         this.destino = document.body;
     }
     
-   mostrar=()=>{
+   mostrar=(titulo,texto)=>{
     this.divmsg = document.createElement("div");
 
     const estilo_divmsg = 
@@ -59,12 +57,65 @@ class Cxmsg{
     "border-radius: 5px 5px 0px 0px;";
 
     divTitulo.setAttribute("style", estiloTitulo);
-    divTitulo.innerHTML = this.titulo;
+    divTitulo.innerHTML = titulo;
     areaCaixaMsg.appendChild(divTitulo);
 
-   };
+    let corpoCaixa = document.createElement("div");
+    
+    const estilocorpoCaixa = 
+    "display: flex;"+
+    "justify-content: flex-start;"+
+    "align-items: center;"+
+    "width: 100%;"+
+    "background-color: #eee;"+
+    "color: #000;"+
+    "padding: 30px 5px;";
+
+    corpoCaixa.setAttribute("style",estilocorpoCaixa);
+    corpoCaixa.innerHTML = texto;
+    areaCaixaMsg.appendChild(corpoCaixa);
+
+    
+    
+    
+    let rodapeCaixa = document.createElement("div");
+    
+    const estilorodape = 
+    "display: flex;"+
+    "justify-content: space-around;"+
+    "align-items: center;"+
+    "width: 100%;"+
+    "background-color: #ccc;"+
+    "color: #000;"+
+    "padding: 5px;"+
+    "border-radius: 0px 0px 5px 5px;";
+    
+    
+    rodapeCaixa.setAttribute("style",estilorodape);
+    areaCaixaMsg.appendChild(rodapeCaixa);
+    
+    const btn_ok = document.createElement("button");
+    
+    const estilo_btn =
+    "background-color:"+this.cor+";"+
+    "color:#fff;"+
+    "padding: 10px 50px;"+
+    "border-radius: 5px;"+
+    "cursor: pointer;"+
+    "text-transform: uppercase;";
+
+    btn_ok.setAttribute("style", estilo_btn);
+    btn_ok.innerHTML = "Ok";
+
+    btn_ok.addEventListener("click",(evt)=>{
+        this.ocultar();
+    });
+
+    rodapeCaixa.appendChild(btn_ok);
+    
+};
 
    ocultar=()=>{
-
+      this.divmsg.remove();
    }
 }

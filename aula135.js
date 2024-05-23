@@ -1,4 +1,4 @@
-// CRIANDO CAIXA DE MENSAGEM PERSONALIZADA (aulas 135 a 139)
+// CRIANDO CAIXA DE MENSAGEM PERSONALIZADA (aulas 135 a 137)
 
 const config ={
     cor : "#48f"

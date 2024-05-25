@@ -1,5 +1,13 @@
 // FAZENDO UM CRONÔMETRO COM USO DO TIMESTAMP
 
+import { Cxmsg } from "./Cxmsg.js";
+
+const config ={
+    cor : "#080"
+}
+
+Cxmsg.config(config);
+
 const timer = document.querySelector("#timer");
 const btn_play = document.querySelector("#play");
 const btn_stop= document.querySelector("#stop");
@@ -8,6 +16,7 @@ const btn_tempos = document.querySelector("#tempo")
 const tempos = document.querySelector("#temposRegistrados");
 
 let intervalo = null;
+let tmpInicial = null;
 
 const contador =()=>{
     const tmpAtual = Date.now();
@@ -44,6 +53,7 @@ btn_reset.addEventListener("click",()=>{
 
 btn_stop.addEventListener("click",()=>{
     clearInterval(intervalo);
+    Cxmsg.mostrar("Cronometro", "O cronometro foi parado");
 });
 
 btn_tempos.addEventListener("click",()=>{

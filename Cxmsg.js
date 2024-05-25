@@ -1,19 +1,18 @@
 //CAIXA DE MENSAGEM PERSONALIZADA
 
 class Cxmsg{
+   static cor = "#888";
+   static destino = null;
+   static divmsg = null;
 
-    titulo = null;
-    texto = null;
-    cor = null;
-    destino = null;
-    divmsg = null;
-
-    constructor(config){
-        this.cor = config.cor;
-        this.destino = document.body;
-    }
+   static config = (config)=>{
+    this.cor = config.cor
+   }
     
-   mostrar=(titulo,texto)=>{
+   static mostrar=(titulo,texto)=>{
+    this.destino = document.body;
+    this.titulo = titulo;
+    this.texto = texto;
     this.divmsg = document.createElement("div");
 
     const estilo_divmsg = 
@@ -115,7 +114,9 @@ class Cxmsg{
     
 };
 
-   ocultar=()=>{
+   static ocultar=()=>{
       this.divmsg.remove();
    }
 }
+
+export {Cxmsg}

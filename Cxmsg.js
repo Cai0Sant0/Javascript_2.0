@@ -4,12 +4,15 @@ class Cxmsg{
    static cor = "#888";
    static destino = null;
    static divmsg = null;
-
-   static config = (config)=>{
-    this.cor = config.cor
-   }
+   static tipo = null;
+   static comando = null;
+   static textos = null;
     
-   static mostrar=(titulo,texto)=>{
+   static mostrar=(config,titulo,texto)=>{
+    this.textos = config.textos;
+    this.cor = config.cor;
+    this.tipo = config.tipo;
+    this.comando = ()=>{config.comando_sn()};
     this.destino = document.body;
     this.titulo = titulo;
     this.texto = texto;
@@ -92,26 +95,59 @@ class Cxmsg{
     
     rodapeCaixa.setAttribute("style",estilorodape);
     areaCaixaMsg.appendChild(rodapeCaixa);
-    
-    const btn_ok = document.createElement("button");
-    
-    const estilo_btn =
-    "background-color:"+this.cor+";"+
-    "color:#fff;"+
-    "padding: 10px 50px;"+
-    "border-radius: 5px;"+
-    "cursor: pointer;"+
-    "text-transform: uppercase;";
 
-    btn_ok.setAttribute("style", estilo_btn);
-    btn_ok.innerHTML = "Ok";
+    if(this.tipo == "ok"){
 
-    btn_ok.addEventListener("click",(evt)=>{
-        this.ocultar();
-    });
-
-    rodapeCaixa.appendChild(btn_ok);
+      const btn_ok = document.createElement("button");
     
+      const estilo_btn =
+      "background-color:"+this.cor+";"+
+      "color:#fff;"+
+      "padding: 10px 50px;"+
+      "border-radius: 5px;"+
+      "cursor: pointer;"+
+      "text-transform: uppercase;";
+
+      btn_ok.setAttribute("style", estilo_btn);
+      btn_ok.innerHTML = "Ok";
+
+      btn_ok.addEventListener("click",(evt)=>{
+         this.ocultar();
+      });
+
+      rodapeCaixa.appendChild(btn_ok);
+    }
+    else if (this.tipo == "sn"){
+      const btn_sim = document.createElement("button");
+      const btn_nao = document.createElement("button");
+    
+      const estilo_btn =
+      "background-color:"+this.cor+";"+
+      "color:#fff;"+
+      "padding: 10px 50px;"+
+      "border-radius: 5px;"+
+      "cursor: pointer;"+
+      "text-transform: uppercase;";
+
+      btn_sim.setAttribute("style", estilo_btn);
+      btn_sim.innerHTML = this.textos[0];
+
+      btn_nao.setAttribute("style", estilo_btn);
+      btn_nao.innerHTML = this.textos[1];
+
+      btn_sim.addEventListener("click",(evt)=>{
+         this.comando();
+         this.ocultar();
+      })
+
+      btn_nao.addEventListener("click",(evt)=>{
+         this.ocultar();
+      });
+
+      rodapeCaixa.appendChild(btn_sim);
+      rodapeCaixa.appendChild(btn_nao);
+
+    }
 };
 
    static ocultar=()=>{

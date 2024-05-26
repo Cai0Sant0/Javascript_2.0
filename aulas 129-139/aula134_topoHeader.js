@@ -27,7 +27,7 @@ const formatPadrao =
     
     const logo = 
     "<div id= 'logo' class= 'logo'>"+ 
-    "<img src = 'img/calculadora.png' title = 'Logo' style ='"+estiloLogo+"'/>"+
+    "<img src = '../img/calculadora.png' title = 'Logo' style ='"+estiloLogo+"'/>"+
     "</div>";
     
     topo.innerHTML += logo;

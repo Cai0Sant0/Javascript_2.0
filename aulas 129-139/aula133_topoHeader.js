@@ -19,7 +19,7 @@ body.prepend(topo);
 
 const logo = 
     "<div id= 'logo' class= 'logo'>"+ 
-"<img src = 'img/calculadora.png' title = 'Logo'/>"+
+"<img src = '../img/calculadora.png' title = 'Logo'/>"+
     "</div>";
 
 topo.innerHTML += logo;

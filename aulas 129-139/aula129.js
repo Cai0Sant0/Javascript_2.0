@@ -3,10 +3,10 @@
 import { Cxmsg } from "./Cxmsg.js";
 
 const config ={
-    cor : "#080"
+    cor : "#080",
+    tipo: "ok"
 }
 
-Cxmsg.config(config);
 
 const timer = document.querySelector("#timer");
 const btn_play = document.querySelector("#play");
@@ -53,7 +53,7 @@ btn_reset.addEventListener("click",()=>{
 
 btn_stop.addEventListener("click",()=>{
     clearInterval(intervalo);
-    Cxmsg.mostrar("Cronometro", "O cronometro foi parado");
+    Cxmsg.mostrar(config,"CRONOMETRO","CRONOMETRO PARADO!!!");
 });
 
 btn_tempos.addEventListener("click",()=>{

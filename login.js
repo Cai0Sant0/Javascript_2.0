@@ -14,11 +14,11 @@ class Login{
     static endpoint = "https://73b47783-2e51-461e-a139-b5f0b78558db-00-1gkgmuq5u8zqx.kirk.replit.dev/";
     //  ?matricula=123&senha=321
 
-    static login =(mat,pass,config = null)=>{
+    static login =(config = null)=>{
         if(config!=null){
             this.config = config;
         }
-        this.endpoint +=  `?matricula=${mat}&senha=${pass}`;
+        //this.endpoint +=  `?matricula=${mat}&senha=${pass}`;
         this.estilocss = ".fundoLogin{display: flex; justify-content: center; align-items: center; width: 100%; height: 100vh; position: absolute; top:0px; left: 0px ;background-color: rgba(0, 0, 0, 0.75); box-sizing: border-box;}"+
                          ".baseLogin{display: flex; justify-content: center; align-items: stretch; width: 50%; box-sizing: inherit;}"+
                          ".elementosLogin{display: flex; justify-content: center; align-items: center; flex-direction: column; width: 65%; background-color: #eee; padding: 10px; border-radius: 70px 0px 0px 70px; box-sizing: inherit;}"+
@@ -66,8 +66,8 @@ class Login{
 
         const inputUsername = document.createElement("input");
         inputUsername.setAttribute("name","f_username");
-        inputUsername.setAttribute("class","f_username")
-        inputUsername.setAttribute("placeholder"," Matrícula");
+        inputUsername.setAttribute("id","f_username")
+        inputUsername.setAttribute("placeholder","Matrícula");
         inputUsername.setAttribute("type","text");
         campoLoginUsername.appendChild(inputUsername);
 
@@ -83,9 +83,9 @@ class Login{
 
         const inputPassword = document.createElement("input");
         inputPassword.setAttribute("name","p_username");
-        inputPassword.setAttribute("class","p_username");
+        inputPassword.setAttribute("id","p_username");
         inputPassword.setAttribute("placeholder","Senha");
-        inputPassword.setAttribute("type","text");
+        inputPassword.setAttribute("type","password");
         campoLoginPassword.appendChild(inputPassword);
 
         const botoesLogin = document.createElement("div");
@@ -95,11 +95,24 @@ class Login{
         const btnLogin = document.createElement("button");
         btnLogin.setAttribute("id","btn_login");
         btnLogin.innerHTML = "LOGIN";
+        btnLogin.addEventListener("click",()=>{
+            if(this.verificaLogin()){
+                this.fechar();
+            }
+           else{
+            inputUsername.value = "";
+            inputPassword.value = "";
+            console.log("Usuário não encontrado");
+           }
+        });
         botoesLogin.appendChild(btnLogin);
 
         const btnCancel = document.createElement("button");
         btnCancel.setAttribute("id","btn_cancelar");
         btnCancel.innerHTML = "CANCELAR";
+        btnCancel.addEventListener("click",()=>{
+            this.fechar();
+        })
         botoesLogin.appendChild(btnCancel);
 
         const logoLogin = document.createElement("div");
@@ -111,15 +124,6 @@ class Login{
         img.setAttribute("src",this.config.img);
         img.setAttribute("alt", "Calculadora");
         logoLogin.appendChild(img);
-
-    
-
-        
-        
-
-        
-        
-
         
         // fetch(this.endpoint)
         // .then(res => res.json())
@@ -135,6 +139,24 @@ class Login{
         //         console.log("Usuário não encontrado");
         //     }
         // });
+    }
+
+    static verificaLogin =()=>{
+        let mat = document.querySelector("#f_username").value;
+        let pass = document.querySelector("#p_username").value;
+
+        if(mat == "123" && pass == "321"){
+            return true;
+        }
+       return false;
+    }
+
+    static fechar = ()=>{
+        const id_estiloLogin = document.querySelector("#id_estiloLogin");
+        id_estiloLogin.remove();
+
+        const fundoLogin = document.querySelector("#fundoLogin");
+        fundoLogin.remove();
     }
 }
 

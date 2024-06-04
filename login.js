@@ -3,10 +3,12 @@
 class Login{
 
     static logado = false;
-    static matlogado = false;
-    static nomelogado = false;
-    static acessologado = false;
+    static matlogado = null;
+    static nomelogado = null;
+    static acessologado = null;
     static estilocss = null;
+    static callBack_OK = null;
+    static callBack_Nao_Ok = null
     static config = {
         cor: "rgb(214, 65, 65)",
         img: "img/calculadora.png"
@@ -14,11 +16,12 @@ class Login{
     static endpoint = "https://73b47783-2e51-461e-a139-b5f0b78558db-00-1gkgmuq5u8zqx.kirk.replit.dev/";
     //  ?matricula=123&senha=321
 
-    static login =(config = null)=>{
+    static login =(callBack_OK, callBack_Nao_Ok,config = null)=>{
         if(config!=null){
             this.config = config;
         }
-        //this.endpoint +=  `?matricula=${mat}&senha=${pass}`;
+        this.callBack_OK = ()=> {callBack_OK()};
+        this.callBack_Nao_Ok = ()=>{callBack_Nao_Ok()};
         this.estilocss = ".fundoLogin{display: flex; justify-content: center; align-items: center; width: 100%; height: 100vh; position: absolute; top:0px; left: 0px ;background-color: rgba(0, 0, 0, 0.75); box-sizing: border-box;}"+
                          ".baseLogin{display: flex; justify-content: center; align-items: stretch; width: 50%; box-sizing: inherit;}"+
                          ".elementosLogin{display: flex; justify-content: center; align-items: center; flex-direction: column; width: 65%; background-color: #eee; padding: 10px; border-radius: 70px 0px 0px 70px; box-sizing: inherit;}"+
@@ -96,14 +99,7 @@ class Login{
         btnLogin.setAttribute("id","btn_login");
         btnLogin.innerHTML = "LOGIN";
         btnLogin.addEventListener("click",()=>{
-            if(this.verificaLogin()){
-                this.fechar();
-            }
-           else{
-            inputUsername.value = "";
-            inputPassword.value = "";
-            console.log("Usuário não encontrado");
-           }
+        this.verificaLogin();
         });
         botoesLogin.appendChild(btnLogin);
 
@@ -124,31 +120,30 @@ class Login{
         img.setAttribute("src",this.config.img);
         img.setAttribute("alt", "Calculadora");
         logoLogin.appendChild(img);
-        
-        // fetch(this.endpoint)
-        // .then(res => res.json())
-        // .then(res=>{
-        //     if(res){
-        //         this.logado = true;
-        //         this.matlogado = mat;
-        //         this.nomelogado = res.nome;
-        //         this.acessologado = res.acesso;
-        //         console.log(res);
-        //     }
-        //     else{
-        //         console.log("Usuário não encontrado");
-        //     }
-        // });
     }
 
     static verificaLogin =()=>{
         let mat = document.querySelector("#f_username").value;
         let pass = document.querySelector("#p_username").value;
 
-        if(mat == "123" && pass == "321"){
-            return true;
-        }
-       return false;
+        const endpoint = `https://73b47783-2e51-461e-a139-b5f0b78558db-00-1gkgmuq5u8zqx.kirk.replit.dev/?matricula=${mat}&senha=${pass}`;
+        
+        fetch(endpoint)
+        .then(res => res.json())
+        .then(res=>{
+            if(res){
+                this.logado = true;
+                this.matlogado = mat;
+                this.nomelogado = res.nome;
+                this.acessologado = res.acesso;
+                this.callBack_OK();
+                this.fechar();
+            }
+            else{
+                this.callBack_Nao_Ok()
+                return false;
+            }
+        });
     }
 
     static fechar = ()=>{

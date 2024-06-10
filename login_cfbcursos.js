@@ -126,7 +126,7 @@ class Login{
         let mat = document.querySelector("#f_username").value;
         let pass = document.querySelector("#p_username").value;
 
-        const endpoint = `https://73b47783-2e51-461e-a139-b5f0b78558db-00-1gkgmuq5u8zqx.kirk.replit.dev/?matricula=${mat}&senha=${pass}`;
+        const endpoint = `https://a3a24cb6-7b2e-4484-86bf-f9cd9537bfdf-00-3ei9aardma91a.worf.replit.dev/?matricula=${mat}&senha=${pass}`;
         
         fetch(endpoint)
         .then(res => res.json())

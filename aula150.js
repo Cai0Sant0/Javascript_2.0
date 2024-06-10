@@ -1,6 +1,6 @@
 // Aula sobre tela de login (aula 150 a 151) disponiblizando conteúdo via cdn
 
-import { Login } from "./login.js";
+import {Cxmsg} from "./aulas 129-139/Cxmsg.js";
 
 const config = {
     cor: "#800",

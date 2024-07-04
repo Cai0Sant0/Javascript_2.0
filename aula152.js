@@ -66,6 +66,20 @@ const dataGridView = (configDataGridView)=>{
         const imgexibi = document.createElement("img");
         imgexibi.setAttribute("class", "dgvOperacao");
         imgexibi.setAttribute("src", "imgs_DataGridView/exibir.svg");
+        imgexibi.addEventListener("click",(evento)=>{
+            document.querySelector(".janelaView").classList.remove("ocultar");
+            document.querySelector(".btn").addEventListener("click",()=>{document.querySelector(".janelaView").classList.add("ocultar")});
+            const id = evento.target.parentNode.parentNode.firstChild.innerHTML;
+            const endpoint = `http://127.0.0.1:1880/produto/${id}`;
+            fetch(endpoint)
+            .then(res=>res.json())
+            .then(res=>{
+                document.getElementById("f_id").value = res[0].idprodutos;
+                document.getElementById("f_prod").value = res[0].produtos_prod;
+                document.getElementById("f_marca").value = res[0].marca_prod;
+                document.getElementById("f_mod").value = res[0].modelo_prod;
+            })
+        });
         c5.appendChild(imgexibi);
         
         dgvDados.appendChild(dgvLinha);

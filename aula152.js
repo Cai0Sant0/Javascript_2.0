@@ -2,7 +2,7 @@
 
 
 const configDataGridView = {
-     endpoint : "produtos.json",
+     endpoint : "http://127.0.0.1:1880/produtos",
      idDestino: "dgvDados"
 }
 
@@ -20,22 +20,22 @@ const dataGridView = (configDataGridView)=>{
 
         const c1 = document.createElement("div")
         c1.setAttribute("class","c1 coluna");
-        c1.innerHTML = element.id;
+        c1.innerHTML = element.idprodutos;
         dgvLinha.appendChild(c1);
 
         const c2 = document.createElement("div")
         c2.setAttribute("class","c2 coluna");
-        c2.innerHTML = element.produto;
+        c2.innerHTML = element.produtos_prod;
         dgvLinha.appendChild(c2);
 
         const c3 = document.createElement("div")
         c3.setAttribute("class","c3 coluna");
-        c3.innerHTML = element.marca;
+        c3.innerHTML = element.marca_prod;
         dgvLinha.appendChild(c3);
 
         const c4 = document.createElement("div")
         c4.setAttribute("class","c4 coluna");
-        c4.innerHTML = element.modelo;
+        c4.innerHTML = element.modelo_prod;
         dgvLinha.appendChild(c4);
 
         const c5 = document.createElement("div")
@@ -45,6 +45,17 @@ const dataGridView = (configDataGridView)=>{
         const imgDel = document.createElement("img");
         imgDel.setAttribute("class", "dgvOperacao");
         imgDel.setAttribute("src", "imgs_DataGridView/deletar.svg");
+        imgDel.addEventListener("click",(evento)=>{
+            const id = evento.target.parentNode.parentNode.firstChild.innerHTML;
+            const linha = evento.target.parentNode.parentNode
+            const endpoint = `http://127.0.0.1:1880/removeproduto/${id}`;
+            fetch(endpoint)
+            .then(res=>{
+                if(res.status==200){
+                    linha.remove();
+                }
+            });
+        })
         c5.appendChild(imgDel);
 
         const imgedit = document.createElement("img");

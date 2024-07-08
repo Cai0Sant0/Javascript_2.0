@@ -122,6 +122,8 @@
 
 .rodape{
     align-items: center !important;
+    justify-content: center !important;
+    flex-direction: row !important;
 }
 
 .rodape > .btn{
@@ -130,6 +132,7 @@
     cursor: pointer;
     padding: 10px 30px;
     border-radius: 5px;
+    margin: 5px;
 }
 
 .ocultar{

@@ -61,6 +61,42 @@ const dataGridView = (configDataGridView)=>{
         const imgedit = document.createElement("img");
         imgedit.setAttribute("class", "dgvOperacao");
         imgedit.setAttribute("src", "imgs_DataGridView/editar.svg");
+        imgedit.addEventListener("click",(evento)=>{
+            document.querySelector("#janelaEditar").classList.remove("ocultar");
+            document.querySelector("#btnCancelar").addEventListener("click",()=>{document.querySelector("#janelaEditar").classList.add("ocultar")});
+            document.querySelector("#btnGravar").addEventListener("click",()=>{
+
+                const id = document.getElementById("f_idEditar").value;
+                const produto  = document.getElementById("f_prodEditar").value;
+                const marca = document.getElementById("f_marcaEditar").value;
+                const modelo = document.getElementById("f_modEditar").value;
+
+                const endpoint = `http://127.0.0.1:1880/updateproduto/${id}/${produto}/${marca}/${modelo}`;
+
+                fetch(endpoint)
+                .then(res=>{
+                    if(res.status == 200){
+                        document.querySelector("#janelaEditar").classList.add("ocultar");
+                    }
+                    else{
+                        alert("ERRO AO ATUALIZAR!");
+                    }
+                })
+                document.querySelector("#janelaEditar").classList.add("ocultar");
+            });
+
+            const id = evento.target.parentNode.parentNode.firstChild.innerHTML;
+            const endpoint = `http://127.0.0.1:1880/produto/${id}`;
+
+            fetch(endpoint)
+            .then(res=>res.json())
+            .then(res=>{
+                document.getElementById("f_idEditar").value = res[0].idprodutos;
+                document.getElementById("f_prodEditar").value = res[0].produtos_prod;
+                document.getElementById("f_marcaEditar").value = res[0].marca_prod;
+                document.getElementById("f_modEditar").value = res[0].modelo_prod;
+            })
+        });
         c5.appendChild(imgedit);
 
         const imgexibi = document.createElement("img");

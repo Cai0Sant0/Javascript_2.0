@@ -11,7 +11,7 @@ class Login{
     static callBack_Nao_Ok = null
     static config = {
         cor: "rgb(214, 65, 65)",
-        img: "img/calculadora.png"
+        img: "../img/calculadora.png"
     }
     static endpoint = "https://73b47783-2e51-461e-a139-b5f0b78558db-00-1gkgmuq5u8zqx.kirk.replit.dev/";
     //  ?matricula=123&senha=321

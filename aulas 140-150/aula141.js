@@ -1,7 +1,7 @@
 // Aula sobre tela de login (aula 141 a 149);
 
 import { Login } from "./login.js";
-import {Cxmsg} from "./aulas 129-139/Cxmsg.js";
+import {Cxmsg} from "../aulas 129-139/Cxmsg.js";
 
 const config = {
     cor: "#800",

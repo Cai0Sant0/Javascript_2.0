@@ -1,2 +1,2 @@
-### Curso Javascript CFB Curso
+### Curso Javascript - CFB Cursos
 <hr>
